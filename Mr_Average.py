@@ -14,9 +14,8 @@ def top_scorer():
         "PTS", ascending=False).head(10)
     print(highest_scoring)
 
+
 # outputs the most average scorer PPG-wise in the league
-
-
 def mr_AverageScorer():
     average_scoring = df[df["G"] > 50].sort_values(
         "DiffPTS", ascending=True).head(1)
