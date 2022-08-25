@@ -22,6 +22,7 @@ def mr_AverageScorer():
     print(average_scoring["Player"])
 
 
+# calculating the differences in each players stat and the average of that stat across the league
 df['DiffAge'] = abs(df["Age"] - df["Age"][605])
 df['DiffG'] = abs(df["G"] - df["G"][605])
 df['DiffGS'] = abs(df["GS"] - df["GS"][605])
@@ -49,14 +50,14 @@ df['DiffTOV'] = abs(df["TOV"] - df["TOV"][605])
 df['DiffPF'] = abs(df["PF"] - df["PF"][605])
 df['DiffPTS'] = abs(df["PTS"] - df["PTS"][605])
 
+# calculating the total difference score of each player
 df["TotalDiff"] = df["DiffAge"] + df["DiffG"] + df["DiffGS"] + df["DiffMP"] + df["DiffFG"] + df["DiffFG%"] + df["Diff3P"] + df["Diff3PA"] + df["Diff3P%"] + df["Diff2P"] + df["Diff2PA"] + df["Diff2P%"] + \
     df["DiffeFG%"] + df["DiffFT"] + df["DiffFTA"] + df["DiffFT%"] + df["DiffORB"] + df["DiffDRB"] + \
     df["DiffTRB"] + df["DiffAST"] + df["DiffSTL"] + \
     df["DiffBLK"] + df["DiffTOV"] + df["DiffPF"] + df["DiffPTS"]
 
+
 # Top 10 most average players in the NBA
-
-
 def mr_Average():
     average = df[df["G"] > 50].sort_values(
         "TotalDiff", ascending=True)
