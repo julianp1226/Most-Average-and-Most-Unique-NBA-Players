@@ -4,8 +4,8 @@ import numpy as np
 # reading csv file of NBA player's stats for the 2021-22 season
 df = pd.read_csv("nba_players_2022.csv")
 
-# found the mean of all the stats in the dataset
-#mean_df = df.mean()
+# found the mean of all the stats in the dataset and appends it to the bottom
+df.loc['Average'] = df.mean(numeric_only=True)
 
 
 # outputs list of top 10 scorers in the league for 2021-22
@@ -23,32 +23,32 @@ def mr_AverageScorer():
 
 
 # calculating the differences in each players stat and the average of that stat across the league
-df['DiffAge'] = abs(df["Age"] - df["Age"][605])
-df['DiffG'] = abs(df["G"] - df["G"][605])
-df['DiffGS'] = abs(df["GS"] - df["GS"][605])
-df['DiffMP'] = abs(df["MP"] - df["MP"][605])
-df['DiffFG'] = abs(df["FG"] - df["FG"][605])
-df['DiffFGA'] = abs(df["FGA"] - df["FGA"][605])
-df['DiffFG%'] = abs(df["FG%"] - df["FG%"][605])
-df['Diff3P'] = abs(df["3P"] - df["3P"][605])
-df['Diff3PA'] = abs(df["3PA"] - df["3PA"][605])
-df['Diff3P%'] = abs(df["3P%"] - df["3P%"][605])
-df['Diff2P'] = abs(df["2P"] - df["2P"][605])
-df['Diff2PA'] = abs(df["2PA"] - df["2PA"][605])
-df['Diff2P%'] = abs(df["2P%"] - df["2P%"][605])
-df['DiffeFG%'] = abs(df["eFG%"] - df["eFG%"][605])
-df['DiffFT'] = abs(df["FT"] - df["FT"][605])
-df['DiffFTA'] = abs(df["FTA"] - df["FTA"][605])
-df['DiffFT%'] = abs(df["FT%"] - df["FT%"][605])
-df['DiffORB'] = abs(df["ORB"] - df["ORB"][605])
-df['DiffDRB'] = abs(df["DRB"] - df["DRB"][605])
-df['DiffTRB'] = abs(df["TRB"] - df["TRB"][605])
-df['DiffAST'] = abs(df["AST"] - df["AST"][605])
-df['DiffSTL'] = abs(df["STL"] - df["STL"][605])
-df['DiffBLK'] = abs(df["BLK"] - df["BLK"][605])
-df['DiffTOV'] = abs(df["TOV"] - df["TOV"][605])
-df['DiffPF'] = abs(df["PF"] - df["PF"][605])
-df['DiffPTS'] = abs(df["PTS"] - df["PTS"][605])
+df['DiffAge'] = abs(df["Age"] - df["Age"]['Average'])
+df['DiffG'] = abs(df["G"] - df["G"]['Average'])
+df['DiffGS'] = abs(df["GS"] - df["GS"]['Average'])
+df['DiffMP'] = abs(df["MP"] - df["MP"]['Average'])
+df['DiffFG'] = abs(df["FG"] - df["FG"]['Average'])
+df['DiffFGA'] = abs(df["FGA"] - df["FGA"]['Average'])
+df['DiffFG%'] = abs(df["FG%"] - df["FG%"]['Average'])
+df['Diff3P'] = abs(df["3P"] - df["3P"]['Average'])
+df['Diff3PA'] = abs(df["3PA"] - df["3PA"]['Average'])
+df['Diff3P%'] = abs(df["3P%"] - df["3P%"]['Average'])
+df['Diff2P'] = abs(df["2P"] - df["2P"]['Average'])
+df['Diff2PA'] = abs(df["2PA"] - df["2PA"]['Average'])
+df['Diff2P%'] = abs(df["2P%"] - df["2P%"]['Average'])
+df['DiffeFG%'] = abs(df["eFG%"] - df["eFG%"]['Average'])
+df['DiffFT'] = abs(df["FT"] - df["FT"]['Average'])
+df['DiffFTA'] = abs(df["FTA"] - df["FTA"]['Average'])
+df['DiffFT%'] = abs(df["FT%"] - df["FT%"]['Average'])
+df['DiffORB'] = abs(df["ORB"] - df["ORB"]['Average'])
+df['DiffDRB'] = abs(df["DRB"] - df["DRB"]['Average'])
+df['DiffTRB'] = abs(df["TRB"] - df["TRB"]['Average'])
+df['DiffAST'] = abs(df["AST"] - df["AST"]['Average'])
+df['DiffSTL'] = abs(df["STL"] - df["STL"]['Average'])
+df['DiffBLK'] = abs(df["BLK"] - df["BLK"]['Average'])
+df['DiffTOV'] = abs(df["TOV"] - df["TOV"]['Average'])
+df['DiffPF'] = abs(df["PF"] - df["PF"]['Average'])
+df['DiffPTS'] = abs(df["PTS"] - df["PTS"]['Average'])
 
 # calculating the total difference score of each player
 df["TotalDiff"] = df["DiffAge"] + df["DiffG"] + df["DiffGS"] + df["DiffMP"] + df["DiffFG"] + df["DiffFG%"] + df["Diff3P"] + df["Diff3PA"] + df["Diff3P%"] + df["Diff2P"] + df["Diff2PA"] + df["Diff2P%"] + \
@@ -82,7 +82,7 @@ while True:
         "Type a for the top 10 most average players in the NBA, or type u for the top 10 most unique!\n")
 
     if func_input.strip() == 'exit':
-        print('goodbye! ')
+        print('goodbye!')
         exit()
 
     if func_input.strip() in func_map.keys():
