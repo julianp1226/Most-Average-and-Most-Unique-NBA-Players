@@ -14,13 +14,13 @@ while True:
 
         # outputs list of top 10 scorers in the league
         def top_scorer():
-            highest_scoring = df[df["G"] > 50].sort_values(
+            highest_scoring = df[df["MP"] > 15].sort_values(
                 "PTS", ascending=False).head(10)
             print(highest_scoring)
 
         # outputs the most average scorer PPG-wise in the league
         def mr_AverageScorer():
-            average_scoring = df[df["G"] > 50].sort_values(
+            average_scoring = df[df["MP"] > 15].sort_values(
                 "DiffPTS", ascending=True).head(1)
             print(average_scoring["Player"])
 
@@ -60,16 +60,18 @@ while True:
 
         # Top 10 most average players in the NBA
         def mr_Average():
-            average = df[df["G"] > 50].sort_values(
+            average = df[df["MP"] >= 15].sort_values(
                 "TotalDiff", ascending=True)
-            average2 = average.loc[:, average.columns != "Unnamed: 0"]
+            average2 = average.drop(
+                'Average').loc[:, average.columns != "Unnamed: 0"]
             print(average2.head(10))
 
         # Top 10 most unique players in the NBA
         def mr_Unique():
-            average = df[df["G"] > 50].sort_values(
+            average = df[df["MP"] >= 15].sort_values(
                 "TotalDiff", ascending=False)
-            average2 = average.loc[:, average.columns != "Unnamed: 0"]
+            average2 = average.drop(
+                'Average').loc[:, average.columns != "Unnamed: 0"]
             print(average2.head(10))
 
         # create function map to allow function call on user input
