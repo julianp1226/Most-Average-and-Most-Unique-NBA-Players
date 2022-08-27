@@ -7,7 +7,8 @@ while True:
         print("Sorry, not a valid year!")
     else:
         # reading csv file of NBA player's stats for the season based on user input
-        df = pd.read_csv("NBA Stats 1991-2022/{}_nba_players.csv".format(year))
+        df = pd.read_csv(
+            "NBA Stats 1991-Present/{}_nba_players.csv".format(year))
 
         # found the mean of all the stats in the dataset and appends it to the bottom
         df.loc['Average'] = df.mean(numeric_only=True)
